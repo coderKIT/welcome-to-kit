@@ -1,7 +1,8 @@
-const apiUrl = 'https://pokeapi.co/api/v2/ability/1/';
-
-// Make a GET request
-fetch(apiUrl)
+const getPokemon = () => {
+  const promises = [];
+  for (let i = 100; i <= 200; i++) {
+    const url = `https://pokeapi.co/api/v2/ability/${i}/`
+fetch(url)
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -9,12 +10,19 @@ fetch(apiUrl)
     return response.json();
   })
   .then(data => {
-    console.log(data);
-    displayPokemonName(data);
+    const pokemon = {};
+    pokemon["id"] = data.id;
+    pokemon["name"] = data.name;
+    pokemon["generation"] = data.generation;
+    pokemon["img"] = data.sprites["front_default"]
   })
   .catch(error => {
     console.error('Error:', error);
   });
+  }
+}
+
+getPokemon();
 
 function displayPokemonName(data) {
 const pokemon1 = data.pokemon[0];
