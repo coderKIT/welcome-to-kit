@@ -1,21 +1,22 @@
 :root {
-    background-color: #DDE6ED;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    color: #27374D;
-    --blue-1: #27374D;
-    --blue-2: #526D82;
-    --blue-3: #9DB2BF;
-    --blue-4: #DDE6ED;
+  background-color: #DDE6ED;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #27374D;
+  --blue-1: #27374D;
+  --blue-2: #526D82;
+  --blue-3: #9DB2BF;
+  --blue-4: #DDE6ED;
 }
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
 h1 {
-    font-size: 4rem;
-    font-weight: bold;
+  font-size: 4rem;
+  font-weight: bold;
 }
+
 /* 
 td {
     text-align: center;
@@ -25,31 +26,31 @@ td {
     list-style-type: none;
 } */
 
-ul{
-  max-width:50vw;
+ul {
+  max-width: 50vw;
   width: 100%;
   margin: 0 auto;
   text-align: center;
 }
 
-li{
+li {
   list-style-type: none;
   float: left;
   padding: 2px;
   width: 250px;
-  margin-left: auto ;
-  margin-right: auto ;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img {
-    width: 125px;
-    height: auto;
+  width: 125px;
+  height: auto;
 }
 
 .pokemon-starters {
-    position: relative;
-    display: grid;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
+  position: relative;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
 }
