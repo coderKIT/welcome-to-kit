@@ -1,35 +1,38 @@
+const pokedex = document.getElementById("pokedex");
+
 const getPokemon = () => {
   const promises = [];
-  for (let i = 100; i <= 200; i++) {
-    const url = `https://pokeapi.co/api/v2/ability/${i}/`
-fetch(url)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    const pokemon = {};
-    pokemon["id"] = data.id;
-    pokemon["name"] = data.name;
-    pokemon["generation"] = data.generation;
-    pokemon["img"] = data.sprites["front_default"]
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+  for (let i = 252; i <= 386; i++) {
+    const url = `https://pokeapi.co/api/v2/pokemon/${i}/`
+    promises.push(fetch(url).then((response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })))
+
+    Promise.all(promises).then(result => {
+      const pokemon = result.map(data => ({
+        id: data.id,
+        name: data.name,
+        image: data.sprites["front_default"],
+      }))
+      console.log(pokemon)
+      displayPokemon(pokemon)
+    })
   }
-}
-
-getPokemon();
-
-function displayPokemonName(data) {
-const pokemon1 = data.pokemon[0];
-const pokemonNameH2 = document.getElementById("pokemonName");
-
-const pokemonName1 = pokemon1.pokemon.name;
-const heading = document.createElement("h2");
-heading.innerHTML = pokemonName1;
-pokemonNameH2.appendChild(heading);
 };
+
+const displayPokemon = pokemon => {
+  const pokemonString = pokemon
+    .map(
+      singlePokemon => `
+    <li>
+      <img src="${singlePokemon.image}" />
+      <h3>${singlePokemon.id}. ${singlePokemon.name}</h3>
+    </li>`
+    )
+    .join("")
+  pokedex.innerHTML = pokemonString
+}
+getPokemon();
